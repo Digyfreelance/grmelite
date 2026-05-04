@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Truck, Shield, RefreshCw, Sparkles, Star } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { ProductCard } from "@/components/ProductCard";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { categories, products, testimonials, faqs } from "@/data/catalog";
-import heroImg from "@/assets/hero.jpg";
 import { useEffect } from "react";
 
 const Index = () => {
