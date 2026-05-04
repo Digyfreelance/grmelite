@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useShop } from "@/context/ShopContext";
 import { categories } from "@/data/catalog";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
 
 export const Header = () => {
   const { cartCount, wishlist } = useShop();
@@ -19,11 +20,8 @@ export const Header = () => {
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
-        <Link to="/" className="flex items-center gap-2 mr-2">
-          <span className="font-display text-2xl md:text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            GRM
-          </span>
-          <span className="hidden sm:inline font-display text-sm tracking-[0.2em] text-muted-foreground uppercase">Elite Wear</span>
+        <Link to="/" className="flex items-center gap-2 mr-2" aria-label="GRM Elite Wear home">
+          <img src={logo} alt="GRM Elite Wear logo" className="h-10 md:h-12 w-auto" />
         </Link>
         <nav className="hidden md:flex items-center gap-7 ml-4 text-sm font-medium">
           {categories.map(c => (

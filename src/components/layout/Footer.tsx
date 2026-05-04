@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { categories } from "@/data/catalog";
+import logo from "@/assets/logo.png";
 
 export const Footer = () => (
   <footer className="bg-gradient-soft border-t border-border mt-20">
     <div className="container py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
       <div>
-        <h3 className="font-display text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">GRM Elite Wear</h3>
+        <img src={logo} alt="GRM Elite Wear logo" className="h-12 w-auto mb-3" />
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">Trendy, affordable fashion for women & kids — proudly crafted from Ranipet, Tamil Nadu.</p>
         <div className="flex gap-3">
           <a href="#" aria-label="Instagram" className="h-9 w-9 rounded-full bg-background flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-smooth"><Instagram className="h-4 w-4"/></a>
