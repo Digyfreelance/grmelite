@@ -27,6 +27,7 @@ export const Header = () => {
   }, []);
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
       <div className="hidden md:flex justify-center text-xs py-2 bg-gradient-primary text-primary-foreground">
         <span>✨ Free shipping across India on orders above ₹999 · Easy 7-day returns</span>
@@ -82,5 +83,7 @@ export const Header = () => {
         </div>
       )}
     </header>
+    <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+    </>
   );
 };
