@@ -49,7 +49,7 @@ export const Header = () => {
           <NavLink to="/contact" className="transition-smooth hover:text-primary text-muted-foreground">Contact</NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
-          <button onClick={() => navigate("/track")} className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Search">
+          <button onClick={() => setSearchOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Search">
             <Search className="h-5 w-5" />
           </button>
           <Link to="/login" className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Account">
