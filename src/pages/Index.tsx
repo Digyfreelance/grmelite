@@ -23,44 +23,23 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-hero">
-        <div className="container relative grid lg:grid-cols-2 gap-8 items-center py-16 md:py-24 lg:py-32">
-          <div className="space-y-6 animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background/80 backdrop-blur border border-border text-xs font-medium">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              New Season · Up to 40% off
+      {/* Hero carousel */}
+      <HeroCarousel />
+
+      {/* Offer marquee */}
+      <div className="bg-foreground text-background overflow-hidden">
+        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite] py-2.5 text-xs sm:text-sm font-medium tracking-wide">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <div key={k} className="flex items-center gap-10 px-5 shrink-0">
+              <span>✨ FLAT 30% OFF on Festive Edit</span><span>·</span>
+              <span>🚚 Free shipping above ₹999</span><span>·</span>
+              <span>💖 Buy 2 Get 10% Extra</span><span>·</span>
+              <span>🇮🇳 Pan-India delivery from Tamil Nadu</span><span>·</span>
+              <span>📦 Easy 7-day returns</span><span>·</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance">
-              Upgrade your style with <span className="bg-gradient-primary bg-clip-text text-transparent">GRM Elite Wear</span>
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed">
-              Curated fashion for women & kids — soft fabrics, modern silhouettes, festive elegance. Made for every occasion.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/category/women" className="group inline-flex items-center gap-2 bg-foreground text-background px-7 py-3.5 rounded-full font-medium hover:bg-primary transition-smooth shadow-elegant">
-                Shop Women <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-smooth"/>
-              </Link>
-              <Link to="/category/kids" className="inline-flex items-center gap-2 bg-background border border-border px-7 py-3.5 rounded-full font-medium hover:border-primary transition-smooth">
-                Shop Kids
-              </Link>
-            </div>
-            <div className="flex items-center gap-6 pt-4 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1"><Star className="h-3.5 w-3.5 fill-primary text-primary"/><strong className="text-foreground">4.8</strong> · 2,400+ reviews</div>
-              <div>📦 Pan-India shipping</div>
-            </div>
-          </div>
-          <div className="relative animate-scale-in">
-            <div className="absolute -inset-8 bg-gradient-primary opacity-20 blur-3xl rounded-full" />
-            <img src={heroImg} alt="GRM Elite Wear featured fashion" width={1600} height={900}
-              className="relative rounded-3xl shadow-elegant w-full object-cover aspect-[4/5] lg:aspect-[5/6]" />
-            <div className="absolute -bottom-4 -left-4 bg-background rounded-2xl shadow-card p-4 hidden md:flex items-center gap-3 animate-float">
-              <div className="h-10 w-10 rounded-full bg-gradient-primary flex items-center justify-center"><Sparkles className="h-5 w-5 text-primary-foreground"/></div>
-              <div><div className="text-xs text-muted-foreground">Today's drop</div><div className="font-display font-semibold text-sm">Pastel Edit ✨</div></div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Trust strip */}
       <section className="border-y border-border bg-background">
