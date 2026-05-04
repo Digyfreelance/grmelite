@@ -1,17 +1,33 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Heart, ShoppingBag, Search, Menu, X, User, Package } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useShop } from "@/context/ShopContext";
 import { categories } from "@/data/catalog";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
+import { SearchModal } from "@/components/SearchModal";
 
 export const Header = () => {
   const { cartCount, wishlist } = useShop();
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      } else if (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement)?.tagName)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
       <div className="hidden md:flex justify-center text-xs py-2 bg-gradient-primary text-primary-foreground">
         <span>✨ Free shipping across India on orders above ₹999 · Easy 7-day returns</span>
@@ -34,7 +50,7 @@ export const Header = () => {
           <NavLink to="/contact" className="transition-smooth hover:text-primary text-muted-foreground">Contact</NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
-          <button onClick={() => navigate("/track")} className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Search">
+          <button onClick={() => setSearchOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Search">
             <Search className="h-5 w-5" />
           </button>
           <Link to="/login" className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary transition-smooth" aria-label="Account">
@@ -67,5 +83,7 @@ export const Header = () => {
         </div>
       )}
     </header>
+    <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+    </>
   );
 };
