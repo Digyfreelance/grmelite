@@ -23,7 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <ShopProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/grmelitewear">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/category/:slug" element={<CategoryPage />} />
