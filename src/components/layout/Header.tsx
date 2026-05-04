@@ -1,15 +1,30 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Heart, ShoppingBag, Search, Menu, X, User, Package } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useShop } from "@/context/ShopContext";
 import { categories } from "@/data/catalog";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
+import { SearchModal } from "@/components/SearchModal";
 
 export const Header = () => {
   const { cartCount, wishlist } = useShop();
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      } else if (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement)?.tagName)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
